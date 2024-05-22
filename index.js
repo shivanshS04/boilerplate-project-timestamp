@@ -24,21 +24,22 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get('/api/:time',(req,res)=>{
-  var {time} = req.params
+app.get('/api/:date?',(req,res)=>{
+  var {date} = req.params
   var timestamp;
-  if(!time.includes('-')){
-    time=Number(time)
-  }
-  if(time){
-    timestamp = new Date(time);
+  
+  if(date){
+    if(!date.includes('-')){
+      date=Number(date)
+    }
+    timestamp = new Date(date);
   }
   else{
     timestamp = new Date()
   }
   res.json({
-    "unix":time,
-    "utc" : timestamp
+    "unix":date,
+    "utc" : timestamp.toUTCString()
   })
 })
 
