@@ -38,8 +38,7 @@ app.get('/api/:dateString?',(req,res)=>{
       date = new Date(dateString);
     }
   }
-
-  if(date.toString === 'Invalid Date'){
+  if(date.toString() === 'Invalid Date'){
     res.json({
       error: "Invalid Date"
     })
