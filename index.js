@@ -37,8 +37,13 @@ app.get('/api/:date?',(req,res)=>{
   else{
     timestamp = new Date()
   }
+  if(isNaN(timestamp.getTime())){
+    res.json({
+      error:"Invaid Date"
+    })
+  }
   res.json({
-    "unix":date,
+    "unix":timestamp.getTime(),
     "utc" : timestamp.toUTCString()
   })
 })
